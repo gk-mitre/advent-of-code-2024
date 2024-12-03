@@ -1,0 +1,11 @@
+q         e# reads all input and puts it on the stack
+N%        e# splits the input string by line (yielding an array of lines).
+_         e# adds a copy of the array of lines to the top of the stack
+{S%0=i}%  e# clean split each element of the top array by space and then get the first number
+$         e# Sort the top array
+\         e# Swap elements on the stack (the bottom element becomes the top)
+{S%1=i}%  e# Clean split each element of the top array by space and then get the second number.
+$         e# Sort the top array
+.-        e# vector subtract top array from bottom array
+:z        e# absolute value of each array element
+:+        e# sum the array.

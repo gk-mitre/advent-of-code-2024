@@ -1,0 +1,12 @@
+e# Run-length encoding (RLE) takes an array like [5,5,5,7,7,8,2,2] and maps it to: [[3,5],[2,7],[1,8],[2,2]]
+e# In the below explanation, I also do some stack manipulation with \ (swap) and @ (rotate), which I don't explicitly mention
+
+
+qN%_       e# read in all data, split by line, duplicate
+{S%0=i}%\  e# map to 1st column
+{S%1=i}%$e`_ e# map to 2nd column, sort, run-length encode (RLE), duplicate
+{:*}%\       e# take product of each sub-array of RLE
+1f=@\        e# get 2nd element of each sub-array of RLE
+f#           e# Find index of each element of 1st column in this array
+{W>},        e# Filter out -1's (item not found)
+\f=:+        e# Take these indexes from the array of products, and sum the resulting array.
